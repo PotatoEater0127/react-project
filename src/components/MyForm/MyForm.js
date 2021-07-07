@@ -24,6 +24,7 @@ import MyFormItem from "./MyFormItem";
 import MyInputNumber from "./MyInputNumber";
 
 const spaceRight = { marginRight: 10 };
+const border = { border: "1px solid rgb(200, 200, 200)", borderRadius: "3px" };
 
 export default function MyForm({ isEditMode, onCancel }) {
   const { values, errors, touched, submitForm, setValues, resetForm } =
@@ -50,7 +51,7 @@ export default function MyForm({ isEditMode, onCancel }) {
         {isEditMode ? "修改資料" : "新增資料"}
       </h1>
       <Row>
-        <Col span={8}>
+        <Col span={8} style={border}>
           <MyFormItem
             name="tag"
             className="required"
@@ -68,7 +69,7 @@ export default function MyForm({ isEditMode, onCancel }) {
             )}
           </MyFormItem>
         </Col>
-        <Col span={8}>
+        <Col span={8} style={border}>
           <MyFormItem
             name="orgName"
             className="required"
@@ -85,7 +86,7 @@ export default function MyForm({ isEditMode, onCancel }) {
             )}
           </MyFormItem>
         </Col>
-        <Col span={8}>
+        <Col span={8} style={border}>
           <MyFormItem
             name="weight"
             type="number"
@@ -98,7 +99,6 @@ export default function MyForm({ isEditMode, onCancel }) {
                 {...field}
                 defaultValue={0}
                 min={0}
-                style={{ width: "55%" }}
                 addonAfter="kg"
               />
             )}
@@ -106,13 +106,13 @@ export default function MyForm({ isEditMode, onCancel }) {
         </Col>
       </Row>
       <Row>
-        <Col span={22}>
+        <Col span={24} style={border}>
           <MyFormItem
             name="description"
             className="required"
             label="描述"
             labelCol={{ span: 2, offset: 0 }}
-            wrapperCol={{ span: 22 }}
+            wrapperCol={{ span: 20 }}
             help={`${chineseCharsCounts}/3000 ${
               (touched?.description && errors?.description) ?? ""
             }`}
@@ -128,7 +128,7 @@ export default function MyForm({ isEditMode, onCancel }) {
         </Col>
       </Row>
       <Row>
-        <Col span={8}>
+        <Col span={8} style={border}>
           <MyFormItem
             name="instruction"
             label="使用方式"
@@ -144,7 +144,7 @@ export default function MyForm({ isEditMode, onCancel }) {
             )}
           </MyFormItem>
         </Col>
-        <Col span={8}>
+        <Col span={8} style={border}>
           <Form.Item
             className={values?.max?.isActive ? "required" : ""}
             label={"上限"}
@@ -180,7 +180,7 @@ export default function MyForm({ isEditMode, onCancel }) {
             </MyFormItem>
           </Form.Item>
         </Col>
-        <Col span={8}>
+        <Col span={8} style={border}>
           <MyFormItem
             name="colors"
             type="select"
@@ -202,55 +202,58 @@ export default function MyForm({ isEditMode, onCancel }) {
         </Col>
       </Row>
       <Row>
-        <Col lg={12} xl={8}>
+        <Col lg={12} xl={8} style={border}>
           <MyFormItem
             name="start"
             type="date"
             label="開始時間"
-            labelCol={{ xl: { span: 6, offset: 0 } }}
-            wrapperCol={{ span: 18 }}
+            labelCol={{
+              sm: { span: 5, offset: 0 },
+              xl: { span: 6, offset: 0 },
+            }}
+            wrapperCol={{ sm: { span: 19 }, xl: { span: 18 } }}
           >
             {({ field, meta, helpers }) => (
               <>
-                <Form.Item
+                {/* <Form.Item
                   style={{
                     display: "inline-block",
                     width: "calc(50% - 0.5rem)",
                     marginRight: "1rem",
                     marginBottom: 0,
                   }}
-                >
-                  <DatePicker
-                    {...field}
-                    placeholder="請選擇日期"
-                    disabledDate={(current) => {
-                      if (values?.end == null) {
-                        return false;
-                      }
-                      return current.isAfter(values?.end, "day");
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item
+                > */}
+                <DatePicker
+                  {...field}
+                  placeholder="請選擇日期"
+                  disabledDate={(current) => {
+                    if (values?.end == null) {
+                      return false;
+                    }
+                    return current.isAfter(values?.end, "day");
+                  }}
+                />
+                {/* </Form.Item> */}
+                {/* <Form.Item
                   style={{
                     display: "inline-block",
                     width: "calc(50% - 0.5rem)",
                     marginBottom: 0,
                   }}
-                >
-                  <TimePicker
-                    {...field}
-                    placeholder="請選擇時間"
-                    onChange={(time) => {
-                      handleTimeChange(time, meta.value, helpers);
-                    }}
-                  />
-                </Form.Item>
+                > */}
+                <TimePicker
+                  {...field}
+                  placeholder="請選擇時間"
+                  onChange={(time) => {
+                    handleTimeChange(time, meta.value, helpers);
+                  }}
+                />
+                {/* </Form.Item> */}
               </>
             )}
           </MyFormItem>
         </Col>
-        <Col lg={12} xl={8}>
+        <Col lg={12} xl={8} style={border}>
           <MyFormItem
             name="end"
             type="date"
@@ -259,46 +262,50 @@ export default function MyForm({ isEditMode, onCancel }) {
             wrapperCol={{ span: 18 }}
           >
             {({ field, meta, helpers }) => (
-              <>
-                <Form.Item
-                  style={{
-                    display: "inline-block",
-                    width: "calc(50% - 0.5rem)",
-                    marginRight: "1rem",
-                    marginBottom: 0,
+              <Row type="flex" justify="space-between" align="middle">
+                <DatePicker
+                  {...field}
+                  placeholder="請選擇日期"
+                  disabledDate={(current) => {
+                    if (values?.start == null) {
+                      return false;
+                    }
+                    return current.isBefore(values?.start, "day");
                   }}
-                >
-                  <DatePicker
-                    {...field}
-                    placeholder="請選擇日期"
-                    disabledDate={(current) => {
-                      if (values?.start == null) {
-                        return false;
-                      }
-                      return current.isBefore(values?.start, "day");
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item
-                  style={{
-                    display: "inline-block",
-                    width: "calc(50% - 0.5rem)",
-                    marginBottom: 0,
+                />
+                <TimePicker
+                  {...field}
+                  placeholder="請選擇時間"
+                  onChange={(time) => {
+                    handleTimeChange(time, meta.value, helpers);
                   }}
-                >
-                  <TimePicker
-                    {...field}
-                    placeholder="請選擇時間"
-                    onChange={(time) => {
-                      handleTimeChange(time, meta.value, helpers);
-                    }}
-                  />
-                </Form.Item>
-              </>
+                />
+              </Row>
             )}
           </MyFormItem>
         </Col>
-        <Col span={8}>
+        <Col span={8} style={border}>
+          <MyFormItem
+            name="price"
+            type="number"
+            className="required"
+            label="價格"
+            labelCol={{ span: 4, offset: 0 }}
+            wrapperCol={{ span: 20 }}
+          >
+            {({ field }) => (
+              <MyInputNumber
+                {...field}
+                addonAfter={"NTD"}
+                defaultValue={0}
+                min={0}
+              />
+            )}
+          </MyFormItem>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={8} style={border}>
           <MyFormItem
             name="gender"
             label="性別"
@@ -313,27 +320,6 @@ export default function MyForm({ isEditMode, onCancel }) {
                   </Radio>
                 ))}
               </Radio.Group>
-            )}
-          </MyFormItem>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={8}>
-          <MyFormItem
-            name="price"
-            type="number"
-            className="required"
-            label="價格"
-            labelCol={{ span: 6, offset: 0 }}
-            wrapperCol={{ span: 18 }}
-          >
-            {({ field }) => (
-              <MyInputNumber
-                {...field}
-                addonAfter={"NTD"}
-                defaultValue={0}
-                min={0}
-              />
             )}
           </MyFormItem>
         </Col>

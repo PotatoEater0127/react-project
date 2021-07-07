@@ -1,10 +1,14 @@
 import React from "react";
 import { InputNumber } from "antd";
 
-export default function MyInputNumber({ addonAfter, ...props }) {
+export default function MyInputNumber({ addonAfter, style, ...props }) {
   return (
     <>
-      <InputNumber type="number" {...props} />
+      <InputNumber
+        type="number"
+        {...props}
+        style={{ width: "55%", ...style }}
+      />
       <div
         className="ant-input-group-addon"
         style={{
