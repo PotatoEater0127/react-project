@@ -17,6 +17,8 @@ export default function MyTable({ data, onEdit, onDelete }) {
         locale: { items_per_page: "筆/頁" },
       }}
       scroll={{ x: 1400 }}
+      onShowSizeChange={(current, size) => console.log(current, size)}
+      onChange={(page, pageSize) => console.log(page, pageSize)}
     />
   );
 }

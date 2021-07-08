@@ -17,7 +17,10 @@ function App() {
   const [isVisible, setIsVisible] = useState(false);
   // isEdiMode controls whether the form is for creating data or updating data
   const [isEditMode, seIsEditMode] = useState(false);
+  // isLoading controls the spinning effect
+  const [isLoading, setIsLoading] = useState(false);
   // selectedRecord is the selected data when editting a record
+
   const [selectedRecord, setSelectedRecord] = useState(INITIAL_VALUE);
   // searchTerm is the key wrods for searching data
   const [searchTerm, setSearchTerm] = useState({
@@ -169,12 +172,13 @@ function App() {
           }}
         >
           <Row
+            className="table-toolbar"
             type="flex"
             justify="start"
             align="middle"
             style={{ marginBottom: 5 }}
           >
-            <Col style={{ marginRight: "auto" }}>
+            <Col className="total-amount">
               <Icon type="info-circle" theme="filled" />
               <span> 總資料筆數共 {data.length} 筆</span>
             </Col>

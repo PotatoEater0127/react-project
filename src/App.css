@@ -8,13 +8,17 @@ button + button {
   .app-wrapper {
     padding-top: 3rem;
   }
+  .total-amount {
+    margin-right: auto;
+  }
   .modal-wrapper {
     margin: auto;
-    width:75%;
+    width: 75%;
   }
-  .ant-modal, .ant-modal-content {
+  .ant-modal,
+  .ant-modal-content {
     width: 100%;
-   }
+  }
   .ant-modal-body {
     padding-top: 10px;
   }
@@ -24,13 +28,17 @@ button + button {
   .app-wrapper {
     padding-top: 3rem;
   }
+  .total-amount {
+    margin-right: auto;
+  }
   .modal-wrapper {
     margin: auto;
-    width:95%;
+    width: 95%;
   }
-  .ant-modal, .ant-modal-content {
+  .ant-modal,
+  .ant-modal-content {
     width: 100%;
-   }
+  }
   .ant-modal-body {
     padding-top: 10px;
   }
@@ -41,26 +49,24 @@ button + button {
     margin: auto;
     width: 95%;
   }
-  .ant-modal, .ant-modal-content {
-    /* margin: auto; */
+  .ant-modal,
+  .ant-modal-content {
     width: 100%;
-   }
-  .ant-modal-body {
-    /* padding-top: 10vh; */
   }
 }
 
 @media screen and (max-width: 992px) {
   .modal-wrapper {
-    width:100%;
+    width: 100%;
   }
-  .ant-modal, .ant-modal-content {
+  .ant-modal,
+  .ant-modal-content {
     height: auto;
     min-height: 100vh;
     top: 0;
-    padding:0;
+    padding: 0;
     margin: 0;
-   }
+  }
   .ant-modal-body {
     padding-top: 10vh;
   }
@@ -71,44 +77,53 @@ button + button {
     padding-top: 1rem;
   }
   .modal-wrapper {
-    width:100%;
+    width: 100%;
   }
-  .ant-modal, .ant-modal-content {
+  .ant-modal,
+  .ant-modal-content {
     height: auto;
     min-height: 100vh;
     width: 100vw;
     margin: 0;
     top: 0;
-    padding:0;
-   }
+    padding: 0;
+  }
   .ant-modal-body {
     padding: 10px;
   }
 }
 @media screen and (max-width: 576px) {
-  h1.ant-typography, .ant-typography h1 {
-    margin-bottom:0;
+  div.table-toolbar {
+    justify-content: center;
+  }
+  h1.ant-typography,
+  .ant-typography h1 {
+    margin-bottom: 0;
   }
   .search-wrapper {
-    padding: "1.5rem 1.5rem 1rem 1.5rem",
+    padding: "1.5rem 1.5rem 1rem 1.5rem";
   }
   .modal-wrapper {
-    width:100%;
+    width: 100%;
   }
-  .ant-modal, .ant-modal-content {
+  .ant-modal,
+  .ant-modal-content {
     height: auto;
     min-height: 100vh;
     width: 100vw;
     margin: 0;
     top: 0;
-    padding:0;
-   }
-   .ant-modal-body {
-    /* padding: 10px; */
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 392px) {
+  .total-amount {
+    margin: auto auto 1rem auto;
   }
 }
 
 .required label::before {
-    content: "*";
-    color: red;
+  content: "*";
+  color: red;
 }
