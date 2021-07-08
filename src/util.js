@@ -176,6 +176,8 @@ const createDbRecords = (amount) => {
   const records = [];
   const uniqNumGen = randomGenerator(accumulated, accumulated + amount);
   const priceGen = randomGenerator(1, amount * 5);
+  const weightGen = randomGenerator(1, amount * 4);
+  const maxGen = randomGenerator(1, amount * 3);
   for (let i = 0; i < amount; i++) {
     const uniqNum = uniqNumGen();
     const uniqStart = moment().subtract({ days: uniqNum, hours: uniqNum });
@@ -188,6 +190,9 @@ const createDbRecords = (amount) => {
       price: priceGen(),
       gender: genderNum === 0 ? "F" : "M",
       orgName: randomOrgName(),
+      weight: weightGen(),
+      max: { isActive: true, value: maxGen() },
+      colors: randomColors(),
     });
     records.push(newRecord);
   }
@@ -206,6 +211,21 @@ function randomOrgName() {
     chars.push(char);
   }
   return chars.join("");
+}
+
+// randomly create a orgName
+function randomColors() {
+  const result = [];
+  const colors = ["red", "green", "blue"];
+  // must contain at least one color
+  while (!result.length) {
+    colors.forEach((color) => {
+      if (Math.random() < 0.5) {
+        result.push(color);
+      }
+    });
+  }
+  return result;
 }
 
 export {

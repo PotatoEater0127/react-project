@@ -52,6 +52,10 @@ function generateColumns(onEdit, onDelete) {
   const dscrpCol = columns.find((c) => c.key === "description");
   dscrpCol.ellipsis = true;
 
+  // custimize colors column
+  const colorsCol = columns.find((c) => c.key === "colors");
+  colorsCol.render = (colors) => colors.join(", ");
+
   const actionCol = {
     title: "選項",
     key: "action",
